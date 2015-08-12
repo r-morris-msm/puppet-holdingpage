@@ -1,0 +1,8 @@
+#! /bin/bash
+echo "Content-type: text/plain"
+echo
+if [ "$1" = '<%= @access_key -%>' ]; then
+  rm -f <%= @directory -%>/<%= @touch_file -%>
+else
+  echo "$1 Not authorised"
+fi

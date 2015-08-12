@@ -1,0 +1,13 @@
+<Directory "/var/www/html/holding_page">
+  Options +ExecCGI
+  SetHandler cgi-script
+  Header Set Cache-Control "max-age=0, no-store"
+</Directory>
+
+<% if @include_rewrite_rules %>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/holding_page.*
+RewriteRule ^(.*)$ - [L]
+RewriteCond %{DOCUMENT_ROOT}/holding_page_enabled -f
+RewriteRule ^.*$ <%= @holding_page_uri -%> [R=302,L]
+<% end %>
